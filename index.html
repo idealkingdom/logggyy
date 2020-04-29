@@ -67,7 +67,7 @@ background-image: linear-gradient(315deg, #485461 0%, #28313b 74%);
 			font-weight: bold;
 			text-align: justify;
 		}
-		.message:last-child::after,#text::after{
+		div#messages .message:last-child::after,#text::after{
 			content: "_";
 			animation: move 1s infinite linear;
 		}
@@ -134,14 +134,13 @@ background-image: linear-gradient(315deg, #485461 0%, #28313b 74%);
  consoleText(['Made with <br/> ❤️'], 'text',['#98ff98']);
 
 var sentence = `Hi Loggy , it's been almost 9 months na 😊.
-				\n hopefully moabot patag forever lol.\n
-				Despite the struggle, you really don't give up.\n 
+				\n Hopefully moabot patag till death do us part lol.
+				\nDespite the struggle, you really don't give up.\n
 				You really are a strong woman 🤗.\n
 		        You have no idea how happy I am with you.!\n
-				I love you, always.
-				\n
-				Sincerely forever yours,\n 
-				\t\tloggy 😁 
+				I love you, always.\n<br/>
+				Sincerely forever yours,\n
+				loggy 😁 \n P.S - apil nanis para monthsary 🤣.
 				`
 var words = sentence.split("\n")
 
@@ -152,6 +151,15 @@ function newLine(sentence,count){
 var node = ``
 if (count > sentence.length-1) {
 	return false;
+}
+else if (sentence[count]=='') {
+	setTimeout(function() {newLine(sentence,count+1)}, 1000);
+}
+else if (count > sentence.length-2) {
+	node = `<span id="message${count}" class="message"></span><br>`
+	document.getElementById("messages").insertAdjacentHTML('beforeend', node);
+	consoleText([sentence[count]],"message"+count,['white'],true)
+	setTimeout(function() {newLine(sentence,count+1)}, 1000);
 }
 else{
 	node = `<span id="message${count}" class="message"></span><br>`
