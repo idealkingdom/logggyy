@@ -67,7 +67,7 @@ background-image: linear-gradient(315deg, #485461 0%, #28313b 74%);
 			font-weight: bold;
 			text-align: justify;
 		}
-		div#messages .message:last-child::after,#text::after{
+		div#messages span:last-of-type::after,#text::after{
 			content: "_";
 			animation: move 1s infinite linear;
 		}
@@ -137,7 +137,7 @@ var sentence = `Hi Loggy , it's been almost 9 months na 😊.
 				\n Hopefully moabot patag till death do us part lol.
 				\nDespite the struggle, you really don't give up.\n
 				You really are a strong woman 🤗.\n
-		        You have no idea how happy I am with you.!\n
+		        You have no idea how happy I am with you.!\n<br/>
 				I love you, always.\n<br/>
 				Sincerely forever yours,\n
 				loggy 😁 \n P.S - apil nanis para monthsary 🤣.
@@ -153,19 +153,18 @@ if (count > sentence.length-1) {
 	return false;
 }
 else if (sentence[count]=='') {
-	setTimeout(function() {newLine(sentence,count+1)}, 2000);
-}
-else if (count > sentence.length-2) {
-	node = `<span id="message${count}" class="message"></span><br>`
-	document.getElementById("messages").insertAdjacentHTML('beforeend', node);
-	consoleText([sentence[count]],"message"+count,['white'],true)
-	setTimeout(function() {newLine(sentence,count+1)}, 2000);
+	setTimeout(function() {newLine(sentence,count+1)}, 4000);
 }
 else{
 	node = `<span id="message${count}" class="message"></span><br>`
 	document.getElementById("messages").insertAdjacentHTML('beforeend', node);
 	consoleText([sentence[count]],"message"+count,['white'],true)
-	setTimeout(function() {newLine(sentence,count+1)}, 3000);
+	if (sentence[count].length > 30 && sentence[count].length < 40) {setTimeout(function() {newLine(sentence,count+1)}, 5500);}
+	else if (sentence[count].length > 40) {setTimeout(function() {newLine(sentence,count+1)}, 6500);}
+	else{
+		setTimeout(function() {newLine(sentence,count+1)}, 3000)
+	}
+	
 
 }
 
