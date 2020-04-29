@@ -153,13 +153,13 @@ if (count > sentence.length-1) {
 	return false;
 }
 else if (sentence[count]=='') {
-	setTimeout(function() {newLine(sentence,count+1)}, 1000);
+	setTimeout(function() {newLine(sentence,count+1)}, 2000);
 }
 else if (count > sentence.length-2) {
 	node = `<span id="message${count}" class="message"></span><br>`
 	document.getElementById("messages").insertAdjacentHTML('beforeend', node);
 	consoleText([sentence[count]],"message"+count,['white'],true)
-	setTimeout(function() {newLine(sentence,count+1)}, 1000);
+	setTimeout(function() {newLine(sentence,count+1)}, 2000);
 }
 else{
 	node = `<span id="message${count}" class="message"></span><br>`
