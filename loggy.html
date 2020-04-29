@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>TO LOGGGYY</title>
+	<link rel="stylesheet" href="normalize.css">
+<link href="https://fonts.googleapis.com/css2?family=Space+Mono:ital@1&display=swap" rel="stylesheet">
+	<style type="text/css">
+@import url(https://fonts.googleapis.com/css?family=Khula:700);
+	body, html {
+  height: calc(100% - 1px);
+  margin: 0 !important;
+}
+body{
+background-color: #485461;
+background-image: linear-gradient(315deg, #485461 0%, #28313b 74%);
+}
+	    .center{
+	    	margin: 0px auto;
+	    	text-align: center;
+	    }
+	    .flex-css{
+	    	display: -webkit-box;
+  			display: -moz-box;
+  			display: -ms-flexbox;
+  			display: -moz-flex;
+  			display: -webkit-flex;
+  			display: flex;
+	    }
+		div.main{
+			-ms-box-orient: horizontal;
+			height: 100%;
+			align-items: center;
+			justify-content: center;
+			flex-direction: column;
+
+		}
+		.card{
+		display: flex;
+		 margin-top: 50px;
+		height: 90%;
+		width: 500px;
+		max-width: 85%;
+		padding: 3%;
+		box-shadow: 1px 3px #888888;
+		background-color: #5b6467;
+
+		}
+
+		@keyframes move {
+		  100% {
+		    opacity: 0;
+		    transform: translate(200px, 0);
+		  }
+		  50% {
+		    opacity: 1;
+		  }
+		}
+
+		.message{
+			font-family:'Space Mono', monospace;
+			color: white;
+			margin-top: 30px;
+			font-size: 10pt;
+			font-weight: bold;
+			text-align: justify;
+		}
+		.message:last-child::after,#text::after{
+			content: "_";
+			animation: move 1s infinite linear;
+		}
+		.shorthand { 
+  -webkit-flex-wrap: wrap;
+  flex-wrap: wrap;
+  -webkit-flex-direction: row;
+  flex-direction: row;
+}
+	</style>
+</head>
+<body>
+<div class="main flex-css">
+  <div class="greetings flex-css">
+  	<span class="gMessage"></span>
+  </div>
+  <div class="card center flex-css">
+  	<div style="text-align: left;" id="messages">
+  		<span id="message" class="message"></span><br/><br/><br/><br/><br/>
+  	</div>
+  </div>
+<div class='console-container'><span id='text'></span>
+</div>
+</body>
+
+
+<style type="text/css">
+
+
+/* div.start-quest input{
+	position: absolute;
+	bottom: 0;
+	right: 12px;
+	box-shadow: 2px 2px;
+	background: cyan;
+} */
+
+
+.hidden {
+  opacity:0;
+}
+.console-container {
+  margin: 10px auto;
+  font-family: 'Space Mono', monospace;
+  font-size: 13pt;
+  text-align:center;
+  height:200px;
+  width:90%;
+  color:white;
+  top:0;
+  bottom:0;
+  left:0;
+  right:0;
+}
+.console-underscore{
+	display: inline-flex;
+}
+</style>
+
+
+<script type="text/javascript">
+  consoleText(['Happy Birthday!'], 'message',['white'],true);
+// function([string1, string2],target id,[color1,color2])    
+ consoleText(['Made with <br/> ❤️'], 'text',['#98ff98']);
+
+var sentence = `Hi Loggy , it's been almost 9 months na 😊.
+				\n hopefully moabot patag forever lol.\n
+				Despite the struggle, you really don't give up.\n 
+				You really are a strong woman 🤗.\n
+		        You have no idea how happy I am with you.!\n
+				I love you, always.
+				\n
+				Sincerely forever yours,\n 
+				\t\tloggy 😁 
+				`
+var words = sentence.split("\n")
+
+setTimeout(function() {newLine(words,0)}, 3000);
+
+
+function newLine(sentence,count){
+var node = ``
+if (count > sentence.length-1) {
+	return false;
+}
+else{
+	node = `<span id="message${count}" class="message"></span><br>`
+	document.getElementById("messages").insertAdjacentHTML('beforeend', node);
+	consoleText([sentence[count]],"message"+count,['white'],true)
+	setTimeout(function() {newLine(sentence,count+1)}, 3000);
+
+}
+
+}
+
+
+
+function consoleText(words, id, colors,wait=false,cb) {
+  if (colors === undefined) colors = ['#fff'];
+  var visible = true;
+  var con = document.getElementById('console');
+  var letterCount = 1;
+  var x = 1;
+  var waiting = false;
+  var target = document.getElementById(id)
+  target.setAttribute('style', 'color:' + colors[0])
+  window.setInterval(function() {
+
+    if (letterCount === 0 && waiting === false) {
+      waiting = true;
+      target.innerHTML = words[0].substring(0, letterCount)
+      window.setTimeout(function() {
+        var usedColor = colors.shift();
+        colors.push(usedColor);
+        var usedWord = words.shift();
+        words.push(usedWord);
+        x = 1;
+        target.setAttribute('style', 'color:' + colors[0])
+        letterCount += x;
+        waiting = false;
+      }, 1000)
+    } else if (letterCount === words[0].length + 1 && waiting === false) {
+      waiting = true;
+      window.setTimeout(function() {
+        x = -1;
+        letterCount += x;
+        if (wait==false) {
+        	waiting = false;
+        }
+        else{
+        	waiting = true;
+        }
+        
+      }, 1000)
+    } else if (waiting === false) {
+      target.innerHTML = words[0].substring(0, letterCount)
+      letterCount += x;
+    }
+  }, 120)
+}
+
+</script>
+
+</html>
